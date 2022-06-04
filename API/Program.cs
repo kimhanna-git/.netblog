@@ -19,6 +19,15 @@ namespace API
             using var scope = host.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<BlogContext>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+            try
+            {
+                context.Database.Migrate();
+                DbInitializer.Initialize(context);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Problem migrating data");
+            }
             
             host.Run();
         }
