@@ -22,10 +22,11 @@ namespace API.Controllers
             return await _context.Posts.ToListAsync();
             
         }
-        [HttpPost("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id)
         {
             return await _context.Posts.FindAsync(id);
         }
+        
     }
 }
