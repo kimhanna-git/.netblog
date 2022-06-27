@@ -12,31 +12,31 @@ namespace API.Data
             {
                 new Post
                 {
-                    Title = "Kipalo will change the web",
+                    Title = "Hi there",
                     AuthorId = 1,
                     Timestamp = DateTime.Now,
                     Text = "It is only the beginning."
                 },
                 new Post
                 {
-                    Title = "Kipalo will change the web",
+                    Title = "Who are you?",
                     AuthorId = 4,
                     Timestamp = DateTime.Now,
-                    Text = "It surely will."
+                    Text = "Knock knock."
                 },
                 new Post
                 {
-                    Title = "Kipalo will change the web",
+                    Title = "I am NO ONE",
                     AuthorId = 2,
                     Timestamp = DateTime.Now,
                     Text = "Let's learn and practice."
                 },
                 new Post
                 {
-                    Title = "Kipalo will change the web",
+                    Title = "Okay bye",
                     AuthorId = 3,
                     Timestamp = DateTime.Now,
-                    Text = "Let's change the world together."
+                    Text = "I will change your life"
                 },
             };
 
