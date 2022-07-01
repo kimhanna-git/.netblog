@@ -1,4 +1,6 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import Catalog from "../../features/catalog/Catalog";
 import { Post } from "../models/post";
 
 
@@ -26,17 +28,11 @@ function App() {
   }
   
   return (
-    <div className='app'>
-      <h1 style={{color: 'red'}}>HANNA'S BLOG</h1>
-      <ul>
-        
-        {posts.map(item => (
-          <li key={item.id}>{item.title} - {item.text}</li>
-
-        ))}
-      </ul>
-      <button onClick={addPost}>New Post</button>
-    </div>
+    <>
+      <Typography variant='h2'>HANNA'S BLOG</Typography>
+      <Catalog posts={posts} addPost={addPost} />
+      
+    </>
   );
 }
 
