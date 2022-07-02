@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Catalog from "../../features/catalog/Catalog";
 import { Post } from "../models/post";
+import Header from "./Header";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
   
   return (
     <>
-      <Typography variant='h2'>HANNA'S BLOG</Typography>
+      <Header />
       <Catalog posts={posts} addPost={addPost} />
       
     </>
