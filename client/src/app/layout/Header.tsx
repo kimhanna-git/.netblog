@@ -35,7 +35,7 @@ import './styles.css'
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
-      padding: theme.spacing(0, 0, 0, 0),
+      padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
@@ -76,15 +76,19 @@ export default function Header() {
         <Paper sx={{ width: 320 }}>
       <MenuList dense>
         <MenuItem>
+          <ListItemText inset>ABOUT</ListItemText>
+        </MenuItem>
+        <MenuItem>
           <ListItemText inset>DSA PRACTICE</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemText inset>COMPUTER SCIENCE</ListItemText>
         </MenuItem>
-        <MenuItem>
-          <ListItemText inset>ABOUT</ListItemText>
-        </MenuItem>
-        <Divider />
+        </MenuList>
+        </Paper>
+        <Paper sx={{ width: 320 }}>
+
+      <MenuList dense>
         <MenuItem>
         <Search>
             <StyledInputBase
@@ -92,7 +96,7 @@ export default function Header() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-        </MenuItem>
+          </MenuItem>
         </MenuList>
     </Paper>
         
