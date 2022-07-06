@@ -9,14 +9,22 @@ interface Props {
 export default function Catalog({posts, addPost}: Props) { //destructuring
     return( // <></> is equivalent to <Fragment></Fragment>
        <> 
-      <Box sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper', }}>
-      <Stack spacing={0.5}>
-        <ListItem>Find Learning Materials</ListItem>
-        <ListItemButton>.NET</ListItemButton>
-        <ListItemButton>JAVA SPRING</ListItemButton>
-        <ListItemButton>FLUTTER</ListItemButton>
-      </Stack>     
-      </Box>  
+    <Box sx={{
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.600',
+          color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.50'),
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          p: 2,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
+          position: 'absolute',
+          top: 200,
+          left: '40%',
+          zIndex: 'tooltip',
+        }}>
     <List>
         {posts.map(post  => (
           <ListItem key={post.id}>
@@ -27,6 +35,7 @@ export default function Catalog({posts, addPost}: Props) { //destructuring
         ))}
         </List>
       <button onClick={addPost}>New Post</button>
+      </Box>
         </>
         
         
