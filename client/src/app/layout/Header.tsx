@@ -1,5 +1,5 @@
 import { Check } from "@material-ui/icons";
-import { AppBar, Button, Divider, Grid, InputBase, ListItemIcon, ListItemText, MenuItem, MenuList, Paper, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Divider, Grid, InputBase, ListItemIcon, ListItemText, MenuItem, MenuList, Paper, Toolbar, Typography } from "@mui/material";
 import { ThemeProvider, createTheme, styled, alpha } from '@mui/material/styles';
 import './styles.css'
 
@@ -73,7 +73,10 @@ export default function Header() {
         </ThemeProvider>
         
         <ThemeProvider theme={menutheme}>
-        <Paper sx={{ width: 320 }}>
+          
+        <Paper sx={{ width: 370,
+        position: 'absolute',
+        top: 200,}}>
       <MenuList dense>
         <MenuItem>
           <ListItemText inset>ABOUT</ListItemText>
@@ -86,7 +89,9 @@ export default function Header() {
         </MenuItem>
         </MenuList>
         </Paper>
-        <Paper sx={{ width: 320 }}>
+        <Paper sx={{ width: 370,
+        position: 'absolute',
+        top: 350, }}>
 
       <MenuList dense>
         <MenuItem>
