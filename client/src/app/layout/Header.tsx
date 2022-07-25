@@ -76,22 +76,24 @@ export default function Header() {
           
         <Paper sx={{ width: 370,
         position: 'absolute',
-        top: 200,}}>
+        top: '20%',
+        left: '6%',}}>
       <MenuList dense>
         <MenuItem>
           <ListItemText inset>ABOUT</ListItemText>
         </MenuItem>
         <MenuItem>
-          <ListItemText inset>DSA PRACTICE</ListItemText>
+          <ListItemText inset>DSA TRAINING</ListItemText>
         </MenuItem>
         <MenuItem>
-          <ListItemText inset>COMPUTER SCIENCE</ListItemText>
+          <ListItemText inset>DEV JOURNAL</ListItemText>
         </MenuItem>
         </MenuList>
         </Paper>
         <Paper sx={{ width: 370,
         position: 'absolute',
-        top: 350, }}>
+        top: '38%',
+        left: '6%', }}>
 
       <MenuList dense>
         <MenuItem>

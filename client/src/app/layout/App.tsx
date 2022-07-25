@@ -31,6 +31,7 @@ function App() {
   return (
     <>
       <Header />
+      
       <Catalog posts={posts} addPost={addPost} />
       
     </>

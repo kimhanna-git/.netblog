@@ -1,6 +1,7 @@
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Stack, Typography } from "@mui/material";
 import { Fragment } from "react"
 import { Post } from "../../app/models/post";
+import PostList from "./PostList";
 interface Props {
     posts : Post[];
     addPost: () => void;
@@ -15,20 +16,12 @@ export default function Catalog({posts, addPost}: Props) { //destructuring
           fontSize: '0.875rem',
           fontWeight: '700',
           position: 'absolute',
-          top: 200,
-          left: '27%',
+          top: '20%',
+          left: '30%',
           zIndex: 'tooltip',
-          width: '60%'
+          width: '61.5%'
         }}>
-    <List>
-        {posts.map(post  => (
-          <ListItem key={post.id}>
-            <ListItemText>
-              {post.title} - {post.text}  
-            </ListItemText>
-          </ListItem>
-        ))}
-        </List>
+      <PostList posts={posts}/>
       <button onClick={addPost}>New Post</button>
       </Paper>
         </>
