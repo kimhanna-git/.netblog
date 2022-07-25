@@ -1,16 +1,24 @@
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Stack, Typography } from "@mui/material";
-import { Fragment } from "react"
+import { Paper } from "@mui/material";
+import { useState, useEffect } from "react";
 import { Post } from "../../app/models/post";
 import PostList from "./PostList";
-interface Props {
-    posts : Post[];
-    addPost: () => void;
-}
 
-export default function Catalog({posts, addPost}: Props) { //destructuring
-    return( // <></> is equivalent to <Fragment></Fragment>
-       <> 
-    <Paper sx={{
+
+
+
+export default function Catalog() {
+    const [posts, setProducts] = useState<Post[]>([]);
+  
+  useEffect(() => {
+    fetch('https://localhost:7230/api/posts')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+  }, [])
+
+ 
+    return (
+        <>
+          <Paper sx={{
           
           p: 2,
           fontSize: '0.875rem',
@@ -21,12 +29,16 @@ export default function Catalog({posts, addPost}: Props) { //destructuring
           zIndex: 'tooltip',
           width: '61.5%'
         }}>
-      <PostList posts={posts}/>
-      <button onClick={addPost}>New Post</button>
+      <PostList posts={posts} />
       </Paper>
         </>
-        
+            
+            
+       
         
     )
-
 }
+    
+        
+        
+    

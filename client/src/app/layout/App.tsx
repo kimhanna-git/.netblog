@@ -1,6 +1,10 @@
-import { Typography } from "@mui/material";
+import { Container, CssBaseline, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Route } from "react-router-dom";
+import AboutPage from "../../features/about/AboutPage";
 import Catalog from "../../features/catalog/Catalog";
+import PostDetails from "../../features/catalog/PostDetails";
+import HomePage from "../../features/home/HomePage";
 import { Post } from "../models/post";
 import Header from "./Header";
 
@@ -32,7 +36,14 @@ function App() {
     <>
       <Header />
       
-      <Catalog posts={posts} addPost={addPost} />
+      <CssBaseline>
+      <Container>
+        <Route exact path='/' component={Catalog}/>
+        <Route exact path='/catalog' component={Catalog}/>
+        <Route path='/catalog/:id' component={PostDetails}/>
+        <Route path='/about' component={AboutPage}/>
+      </Container>
+      </CssBaseline>
       
     </>
   );
