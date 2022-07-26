@@ -39,8 +39,7 @@ function App() {
       <CssBaseline>
       <Container>
         <Route exact path='/' component={Catalog}/>
-        <Route exact path='/catalog' component={Catalog}/>
-        <Route path='/catalog/:id' component={PostDetails}/>
+        <Route path='/:id' component={PostDetails}/>
         <Route path='/about' component={AboutPage}/>
       </Container>
       </CssBaseline>

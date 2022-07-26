@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Entities
+namespace API.DTOs
 {
-    public class Post
-    {
-        public int Id { get; set; }
+    public class CreatePostDto
+    {   [Required]
         public string Title { get; set; }
+        [Required]
         public DateTime Timestamp { get; set; }
+        [Required]
         public int AuthorId { get; set; }
+        [Required]
         public string Text { get; set; }
     }
 }

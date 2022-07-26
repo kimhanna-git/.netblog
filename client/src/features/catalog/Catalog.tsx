@@ -27,7 +27,7 @@ export default function Catalog() {
           top: '20%',
           left: '30%',
           zIndex: 'tooltip',
-          width: '61.5%'
+          width: '62.3%'
         }}>
       <PostList posts={posts} />
       </Paper>

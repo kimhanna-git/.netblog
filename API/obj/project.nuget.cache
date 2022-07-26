@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "VBZAEUKZ2pO0Gn6sIF8HL2ch+Wye0Z+X/frKViMXKSl+g6fwjd+83aq/EvNoA4cNI+3Da8YHJvl71PYG0voJug==",
+  "dgSpecHash": "DYvq6+VHFkxSDCc2DrGCCKOyvUHiJ0xY7rFK/Tk8MlTO2BCzwZmtE/0+/Uy0QlyneMh50tHfy/B3z21TVDj9ag==",
   "success": true,
   "projectFilePath": "C:\\Users\\uenso\\Source\\Repos\\.netblog\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\uenso\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\uenso\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\uenso\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\uenso\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\uenso\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.5\\microsoft.data.sqlite.core.6.0.5.nupkg.sha512",
     "C:\\Users\\uenso\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.5\\microsoft.entityframeworkcore.6.0.5.nupkg.sha512",
     "C:\\Users\\uenso\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.5\\microsoft.entityframeworkcore.abstractions.6.0.5.nupkg.sha512",
