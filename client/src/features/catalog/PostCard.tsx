@@ -7,7 +7,7 @@ interface Props {
 
 export default function PostCard({post}: Props) {
     return (
-        <Card sx={{ width: 490, height: 510}}>
+        <Card sx={{ width: 490, height: 524}}>
       <CardContent>
         <Typography gutterBottom variant="h5" fontWeight="bold" component="div">
           {post.title}

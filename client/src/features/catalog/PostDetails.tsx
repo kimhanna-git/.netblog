@@ -16,10 +16,9 @@ export default function PostDetails() {
             .finally(() => setLoading(false));
     }, [id])
 
-    if (loading) return <h3>Loading....</h3>
+    if (loading) return <h3>...<p/>Loading....</h3>
 
-    if (!post) return <h3>
-        Post not found</h3>
+    if (!post) return <h3>...<p/>Post not found</h3>
 
     return (
         <>

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20220627062842_InitialCreate")]
+    [Migration("20220727142114_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,10 @@ namespace API.Data.Migrations
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
                         .IsRequired()

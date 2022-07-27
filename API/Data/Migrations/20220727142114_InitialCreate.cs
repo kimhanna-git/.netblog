@@ -32,8 +32,9 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
-                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Category = table.Column<string>(type: "TEXT", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false),
                     Text = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

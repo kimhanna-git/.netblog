@@ -1,20 +1,15 @@
-import { TextField, InputBase, Paper, Grid, TableContainer, Table, TableBody, TableRow, TableCell, Typography, Box, Divider, Button } from "@mui/material";
+import { TextField, InputBase, Paper, Grid, TableContainer, Table, TableBody, TableRow, TableCell, Typography, Box, Divider, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, NativeSelect } from "@mui/material";
+import React from "react";
 
-function textControl (element: { selectionStart: any; value: string; selectionEnd: any; }, event: { keyCode: number; which: number; preventDefault: () => void; })
-{
-    if(event.keyCode==9 || event.which==9)
-    {
-        event.preventDefault();
-        var s = element.selectionStart;
-        element.value = element.value.substring(0,element.selectionStart) + "\t" + element.value.substring(element.selectionEnd);
-        element.selectionEnd = s+1; 
-    }
-}
 
 export default function PostForm() {
+    const [category, setCategory] = React.useState('');
+
+    const handleChange = (event: SelectChangeEvent) => {
+      setCategory(event.target.value);
+    };
     
     return (
-
       <>
       <Paper sx={{
       
@@ -32,33 +27,40 @@ export default function PostForm() {
   <Box>
     <TextField
       id="outlined-uncontrolled"
-      label="Title"
+      label="Post Title"
       sx = {{width: '100%'}}
     />
+    
   </Box>
   <p/><p/>
   <Box>
     <TextField
           id="outlined-multiline-static"
-          label="Text"
+          label="Post"
           multiline
           rows={25}
           sx = {{width: '100%',
-          onkeydown: "textControl(this,event)"
         }}
         />
   </Box>
   <p/>
-  <Button variant="contained" size="large" sx={{left: "90%"}}>Submit</Button>
-</form>  
-        
+  <FormControl sx = {{width: '20%'}}>
+  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+    Category
+  </InputLabel>
+  <NativeSelect
+    inputProps={{
+      name: 'Category',
+      id: 'uncontrolled-native',
+    }}
+  >
+    <option value={"dsa"}>DSA TRAINING</option>
+    <option value={"dev"}>DEV JOURNAL</option>
+  </NativeSelect>
+</FormControl>
+  <Button variant="contained" size="large" sx={{left: "70%"}}>Submit</Button>
+</form>          
   </Paper>
-    
-
-
     </>
-    
-
-
 
     )}

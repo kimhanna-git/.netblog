@@ -42,7 +42,7 @@ function App() {
         <Route exact path='/' component={Catalog}/>
         <Route path='/:id' component={PostDetails}/>
         <Route path='/about' component={AboutPage}/>
-        <Route path='/newpost' component={PostForm}/>
+        <Route path='/writepost' component={PostForm}/>
       </Container>
       </CssBaseline>
       

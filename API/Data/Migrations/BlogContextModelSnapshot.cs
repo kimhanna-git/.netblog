@@ -50,6 +50,10 @@ namespace API.Data.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("TEXT");
