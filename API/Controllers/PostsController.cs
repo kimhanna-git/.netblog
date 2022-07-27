@@ -35,7 +35,7 @@ namespace API.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Post>> CreatePost(UpdatePostDto postDto)
+        public async Task<ActionResult<Post>> CreatePost(CreatePostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             _context.Posts.Add(post);

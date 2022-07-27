@@ -38,7 +38,7 @@ export default function PostForm() {
           id="outlined-multiline-static"
           label="Post"
           multiline
-          rows={25}
+          rows={21}
           sx = {{width: '100%',
         }}
         />
