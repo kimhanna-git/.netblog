@@ -18,7 +18,8 @@ export default function PostDetails() {
 
     if (loading) return <h3>Loading....</h3>
 
-    if (!post) return <h3>Post not found</h3>
+    if (!post) return <h3>
+        Post not found</h3>
 
     return (
         <>

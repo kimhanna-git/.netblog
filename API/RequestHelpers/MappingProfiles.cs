@@ -9,6 +9,8 @@ namespace API.RequestHelpers
         public MappingProfiles()
         {
             CreateMap<CreatePostDto, Post>();
+            CreateMap<UpdatePostDto, Post>();
+
         }
     }
 }

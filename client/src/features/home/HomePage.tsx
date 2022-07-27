@@ -25,5 +25,6 @@ export default function HomePage({posts, addPost}: Props) {
         <button onClick={addPost}>New Post</button>
         </Paper>
         </>
+        
     )
 }

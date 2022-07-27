@@ -2,6 +2,7 @@ import { Container, CssBaseline, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
+import PostForm from "../../features/admin/PostForm";
 import Catalog from "../../features/catalog/Catalog";
 import PostDetails from "../../features/catalog/PostDetails";
 import HomePage from "../../features/home/HomePage";
@@ -41,6 +42,7 @@ function App() {
         <Route exact path='/' component={Catalog}/>
         <Route path='/:id' component={PostDetails}/>
         <Route path='/about' component={AboutPage}/>
+        <Route path='/newpost' component={PostForm}/>
       </Container>
       </CssBaseline>
       

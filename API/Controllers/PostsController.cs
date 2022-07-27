@@ -32,9 +32,10 @@ namespace API.Controllers
         {
             return await _context.Posts.FindAsync(id);
         }
+
         //[Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Post>> CreatePost(CreatePostDto postDto)
+        public async Task<ActionResult<Post>> CreatePost(UpdatePostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             _context.Posts.Add(post);
@@ -42,6 +43,36 @@ namespace API.Controllers
             if (result) return CreatedAtRoute("GetPost", new { Id = post.Id }, post);
             return BadRequest();
         }
-        
+
+        //[Authorize(Roles = "Admin")]
+        [HttpPut]
+        public async Task<ActionResult<Post>> UpdatePost(UpdatePostDto postDto)
+        {
+            var post = await _context.Posts.FindAsync(postDto.Id);
+            if (post == null) return NotFound();
+            _mapper.Map(postDto, post);
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return NoContent();
+            return BadRequest();
+        }
+
+        //[Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeletePost(int id)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null) return NotFound();
+            _context.Posts.Remove(post);
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return Ok();
+            return BadRequest();
+
+
+        }
+
+
+
+
+
     }
 }
