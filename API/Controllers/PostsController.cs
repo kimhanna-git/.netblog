@@ -33,6 +33,13 @@ namespace API.Controllers
             return await _context.Posts.FindAsync(id);
         }
 
+        [HttpGet("filters")]
+        public async Task<IActionResult> GetFilters()
+        {
+            var category = await _context.Posts.Select(p => p.Category).Distinct().ToListAsync();
+            return Ok(new { category });
+        }
+
         //[Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Post>> CreatePost(CreatePostDto postDto)

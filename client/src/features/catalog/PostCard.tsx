@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardMedia, ListItem, ListItemText, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, ListItem, ListItemText, MenuItem, Stack, TableRow, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { Post } from "../../app/models/post";
 
 interface Props {
@@ -7,16 +8,16 @@ interface Props {
 
 export default function PostCard({post}: Props) {
     return (
-        <Card sx={{ width: 490, height: 524}}>
+        <Card sx={{ width: 490, height: 508}}  >
       <CardContent>
-        <Typography gutterBottom variant="h5" fontWeight="bold" component="div">
-          {post.title}
-          <CardActions>
-      </CardActions>
-        </Typography>
+        <Typography component={Link} to={`/${post.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Typography gutterBottom variant="h5" fontWeight="bold" component="div"
+        >{post.title}
+        </Typography></Typography>
         <Typography variant="h6" color="text.secondary">
           {post.text}
         </Typography>
+              
       </CardContent>
       
     </Card>

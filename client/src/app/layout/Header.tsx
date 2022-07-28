@@ -1,5 +1,6 @@
-import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography } from "@mui/material";
+import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography, ListItem } from "@mui/material";
 import { ThemeProvider, createTheme, styled, alpha } from '@mui/material/styles';
+import { Link, NavLink } from "react-router-dom";
 import './styles.css'
 
   const titletheme = createTheme({
@@ -60,6 +61,11 @@ import './styles.css'
     },
   });
   
+  const Links = [
+    {title: 'about', path:'/about'},
+    {title: 'dsa training', path:'/dsa'},
+    {title: 'dev journal', path:'/dev'},
+  ]
 
 export default function Header() {
     return (
@@ -67,7 +73,7 @@ export default function Header() {
         
         <ThemeProvider theme={titletheme}>
         <Typography variant='h2' align= 'center'>
-        <Button color="inherit">HANNA'S BLOG</Button>
+        <Button component={Link} to="/" color="inherit">HANNA'S BLOG</Button>
         </Typography>
         </ThemeProvider>
         
@@ -78,20 +84,23 @@ export default function Header() {
         top: '20%',
         left: '6%',}}>
       <MenuList dense>
-        <MenuItem>
-          <ListItemText inset>ABOUT</ListItemText>
+        {Links.map(({title, path}) => (
+          <MenuItem>
+          <ListItem 
+            component={NavLink}
+            to={path}
+            key={path}
+            sx={{color: 'inherit'}}
+            >
+              {title.toUpperCase()}
+          </ListItem>
         </MenuItem>
-        <MenuItem>
-          <ListItemText inset>DSA TRAINING</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>DEV JOURNAL</ListItemText>
-        </MenuItem>
+        ))}
         </MenuList>
         </Paper>
         <Paper sx={{ width: 370,
         position: 'absolute',
-        top: '38%',
+        top: '40%',
         left: '6%', }}>
 
       <MenuList dense>
