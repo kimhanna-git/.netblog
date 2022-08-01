@@ -40,9 +40,9 @@ function App() {
       <CssBaseline>
       <Container>
         <Route exact path='/' component={Catalog}/>
-        <Route path='/:id' component={PostDetails}/>
+        <Route exact path='/posts/:id' component={PostDetails}/> {/* link to individual posts */}
         <Route path='/about' component={AboutPage}/>
-        <Route path='/writepost' component={PostForm}/>
+        <Route path='/writepost' component={PostForm}/> 
       </Container>
       </CssBaseline>
       

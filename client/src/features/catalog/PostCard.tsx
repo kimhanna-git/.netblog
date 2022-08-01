@@ -10,7 +10,7 @@ export default function PostCard({post}: Props) {
     return (
         <Card sx={{ width: 490, height: 316}} >
       <CardContent>
-        <Typography component={Link} to={`/${post.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Typography component={Link} to={`/posts/${post.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
         <Typography gutterBottom variant="h5" fontWeight="bold" component="div"
         >{post.title}{/* get the title of the post */}
         </Typography></Typography>

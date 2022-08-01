@@ -7,23 +7,26 @@ const PostForm = () =>  {
   const FormData = global.FormData;
 
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:7231/', // use with scheme
+    baseURL: 'http://localhost:7230/api/posts', // use with scheme
     timeout: 30000,
     
 });
+
   const [formValue, setformValue] = React.useState({
     title: '',
     timestamp: '',
     authorId:'',
     text: '',    
     category: '',
-  })
-  const handleChange = (event: any) => {
+  });
+  
+  const handleChange = (e: any) => {
+    const value = e.target.value;
     setformValue({
       ...formValue,
-      [event.target.name]: event.target.value
+      [e.target.name]: value
     });
-  };  
+  };
     
 const handleSubmit = async() => {
   // store the states in the form data
@@ -37,22 +40,37 @@ const handleSubmit = async() => {
   
   const config: AxiosRequestConfig = {
     method: "post",
-    url: "/api/posts",
+    url: "api/posts",
     data: PostFormData,
     headers: { "Content-Type": "multipart/form-data" },
-    responseType: "json",
-    transformRequest: (PostFormData) => {
-        
-        return PostFormData;
-    },
-    
+
     
 };
 
 // send post request and get response
-const response = await axiosInstance.request(config);
-}
-          
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+  // Any status code that lie within the range of 2xx cause this function to trigger
+  // Do something with response data
+  return response;
+}, function (error) {
+  // Any status codes that falls outside the range of 2xx cause this function to trigger
+  // Do something with response error
+  return Promise.reject(error);
+});
+
+
+
+}       
+  
     return (
       <>
       <Paper sx={{
@@ -98,7 +116,7 @@ const response = await axiosInstance.request(config);
         />
   </Box>
   <p/>
-  <Box>
+  <Box sx = {{width: '100%'}}>
     <TextField
       id="outlined-uncontrolled"
       label="Category"
@@ -108,6 +126,8 @@ const response = await axiosInstance.request(config);
       value={formValue.category}
       onChange={handleChange}
     />
+    <Button type="submit" variant="contained" size="large"  sx={{left: "60%"}}>Submit</Button>
+    <Button variant="contained" size="large"  sx={{left: "61%"}}>Delete</Button>
     
   </Box>
 
@@ -128,7 +148,8 @@ const response = await axiosInstance.request(config);
     <option value={'dev'}>DEV JOURNAL</option>
   </NativeSelect>
   </FormControl> this code needs further research : sending select value thru axios*/}
-  <Button type="submit" variant="contained" size="large" sx={{left: "70%"}}>Submit</Button>
+
+
 </form>          
   </Paper>
     </>
