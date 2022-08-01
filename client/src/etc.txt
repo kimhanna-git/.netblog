@@ -1,0 +1,19 @@
+
+  {/*<FormControl sx = {{width: '20%'}}>
+  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+  </InputLabel>
+  <NativeSelect
+    defaultValue={"dev"}
+    id="category"
+    sx = {{width: '100%'}}
+    onChange={handleChange}
+    inputProps={{
+      name: 'Category',
+      id: 'uncontrolled-native',
+    }}
+  >
+    <option value={'dsa'}>DSA TRAINING</option>
+    <option value={'dev'}>DEV JOURNAL</option>
+  </NativeSelect>
+  </FormControl> this code needs further research : sending select value thru axios*/}
+ from PostForm.tsx

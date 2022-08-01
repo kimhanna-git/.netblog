@@ -3,15 +3,11 @@ import axios, { AxiosRequestConfig } from "axios";
 import React, { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 
-const PostForm = () =>  {
-  const FormData = global.FormData;
 
-  const axiosInstance = axios.create({
-    baseURL: 'http://localhost:7230/api/posts', // use with scheme
-    timeout: 30000,
-    
-});
 
+
+export default function PostForm() {
+  
   const [formValue, setformValue] = React.useState({
     title: '',
     timestamp: '',
@@ -20,55 +16,54 @@ const PostForm = () =>  {
     category: '',
   });
   
-  const handleChange = (e: any) => {
-    const value = e.target.value;
+  const handleChange = (e: ChangeEvent) => {
+    const target = e.target as HTMLTextAreaElement;
+    const value = target.value;
     setformValue({
       ...formValue,
-      [e.target.name]: value
+      [target.name]: value
     });
   };
     
 const handleSubmit = async() => {
   // store the states in the form data
   var datestr = (new Date()).toUTCString();
-  const PostFormData = new FormData();
+  var PostFormData = new FormData(); //currently empty
   PostFormData.append("title", formValue.title)
   PostFormData.append("text", formValue.text)
   PostFormData.append("category", formValue.category)
   PostFormData.append("authorId", '1')
-  PostFormData.append("timestamp", datestr)
-  
+  PostFormData.append("timestamp", datestr) // key-value pairs added 
+
+
+ 
   const config: AxiosRequestConfig = {
     method: "post",
     url: "api/posts",
     data: PostFormData,
     headers: { "Content-Type": "multipart/form-data" },
-
-    
-};
+  };
 
 // send post request and get response
-axios.interceptors.request.use(function (config) {
+  axios.interceptors.request.use(function (config) {
   // Do something before request is sent
   return config;
-}, function (error) {
+  }, function (error) {
   // Do something with request error
-  return Promise.reject(error);
-});
+    return Promise.reject(error);
+  });
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
+  axios.interceptors.response.use(function (response) {
   // Any status code that lie within the range of 2xx cause this function to trigger
   // Do something with response data
-  return response;
-}, function (error) {
+    return response;
+  }, function (error) {
   // Any status codes that falls outside the range of 2xx cause this function to trigger
   // Do something with response error
-  return Promise.reject(error);
-});
-
-
-
+    return Promise.reject(error);
+  });
+  
 }       
   
     return (
@@ -94,8 +89,8 @@ axios.interceptors.response.use(function (response) {
       sx = {{width: '100%'}}
       type="title"
       name="title"
-      value={formValue.title}
       onChange={handleChange}
+      value={formValue.title}
     />
     
   </Box>
@@ -110,8 +105,8 @@ axios.interceptors.response.use(function (response) {
         }}
         type="text"
         name="text"
-        value={formValue.text}
         onChange={handleChange}
+        value={formValue.text}
 
         />
   </Box>
@@ -123,31 +118,13 @@ axios.interceptors.response.use(function (response) {
       sx = {{width: '20%'}}
       type="category"
       name="category"
-      value={formValue.category}
       onChange={handleChange}
+      value={formValue.category}
     />
     <Button type="submit" variant="contained" size="large"  sx={{left: "60%"}}>Submit</Button>
     <Button variant="contained" size="large"  sx={{left: "61%"}}>Delete</Button>
     
   </Box>
-
-  {/*<FormControl sx = {{width: '20%'}}>
-  <InputLabel variant="standard" htmlFor="uncontrolled-native">
-  </InputLabel>
-  <NativeSelect
-    defaultValue={"dev"}
-    id="category"
-    sx = {{width: '100%'}}
-    onChange={handleChange}
-    inputProps={{
-      name: 'Category',
-      id: 'uncontrolled-native',
-    }}
-  >
-    <option value={'dsa'}>DSA TRAINING</option>
-    <option value={'dev'}>DEV JOURNAL</option>
-  </NativeSelect>
-  </FormControl> this code needs further research : sending select value thru axios*/}
 
 
 </form>          
@@ -156,6 +133,5 @@ axios.interceptors.response.use(function (response) {
     
 
     )
-  };
+  }
 
-  export default PostForm;
