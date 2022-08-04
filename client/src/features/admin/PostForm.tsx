@@ -1,70 +1,47 @@
-import { TextField, InputBase, Paper, Grid, TableContainer, Table, TableBody, TableRow, TableCell, Typography, Box, Divider, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, NativeSelect } from "@mui/material";
-import axios, { AxiosRequestConfig } from "axios";
+import { TextField, Paper, Box, Button } from "@mui/material";
+import { AxiosRequestConfig } from "axios";
 import React, { ChangeEvent } from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
-
+import { TextChange } from "typescript";
 
 
 
 export default function PostForm() {
   
-  const [formValue, setformValue] = React.useState({
-    title: '',
-    timestamp: '',
-    authorId:'',
-    text: '',    
-    category: '',
-  });
-  
-  const handleChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLTextAreaElement;
-    const value = target.value;
-    setformValue({
-      ...formValue,
-      [target.name]: value
-    });
-  };
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async (data: any) => {
+    var datestr = (new Date()).toUTCString();
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("text", data.text);
+    formData.append("category", data.category);
+    formData.append("timestamp", datestr);
+    formData.append("authorId", "1");
+    const res = await axios("https://localhost:7230/api/posts", {
+        method: "POST",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data", "Accept": "multipart/form-data" },
+        transformRequest: (formData) => {
+        
+          return formData;}}
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+        });
     
-const handleSubmit = async() => {
-  // store the states in the form data
-  var datestr = (new Date()).toUTCString();
-  var PostFormData = new FormData(); //currently empty
-  PostFormData.append("title", formValue.title)
-  PostFormData.append("text", formValue.text)
-  PostFormData.append("category", formValue.category)
-  PostFormData.append("authorId", '1')
-  PostFormData.append("timestamp", datestr) // key-value pairs added 
-
-
- 
-  const config: AxiosRequestConfig = {
-    method: "post",
-    url: "api/posts",
-    data: PostFormData,
-    headers: { "Content-Type": "multipart/form-data" },
-  };
-
-// send post request and get response
-  axios.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  return config;
-  }, function (error) {
-  // Do something with request error
-    return Promise.reject(error);
-  });
-
-// Add a response interceptor
-  axios.interceptors.response.use(function (response) {
-  // Any status code that lie within the range of 2xx cause this function to trigger
-  // Do something with response data
-    return response;
-  }, function (error) {
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
-    return Promise.reject(error);
-  });
-  
-}       
+};
   
     return (
       <>
@@ -80,18 +57,17 @@ const handleSubmit = async() => {
       width: '62.3%'
     }}>
                    
-<form onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit(onSubmit)}>
 
   <Box>
     <TextField
       id="outlined-uncontrolled"
       label="Post Title"
-      sx = {{width: '100%'}}
-      type="title"
-      name="title"
-      onChange={handleChange}
-      value={formValue.title}
+      sx = {{width: '85%'}}
+      type="text"
+      {...register("title")}
     />
+    <Button variant="contained" size="large"  sx={{top: "10%", left: "2%"}}>Delete</Button>
     
   </Box>
   <p/><p/>
@@ -104,34 +80,23 @@ const handleSubmit = async() => {
         sx = {{width: '100%',
         }}
         type="text"
-        name="text"
-        onChange={handleChange}
-        value={formValue.text}
-
+        {...register("text")}
         />
   </Box>
   <p/>
-  <Box sx = {{width: '100%'}}>
+  <Box sx = {{width: '90%'}}>
     <TextField
       id="outlined-uncontrolled"
       label="Category"
       sx = {{width: '20%'}}
-      type="category"
-      name="category"
-      onChange={handleChange}
-      value={formValue.category}
+      type="text"
+      {...register("category")}
     />
-    <Button type="submit" variant="contained" size="large"  sx={{left: "60%"}}>Submit</Button>
-    <Button variant="contained" size="large"  sx={{left: "61%"}}>Delete</Button>
-    
+    <Button type="submit" variant="contained" size="large"  sx={{left: "80%"}}>Submit</Button>
   </Box>
-
-
 </form>          
   </Paper>
     </>
-    
-
     )
   }
 
