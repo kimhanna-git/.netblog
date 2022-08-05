@@ -1,10 +1,7 @@
 import { TextField, Paper, Box, Button } from "@mui/material";
-import { AxiosRequestConfig } from "axios";
-import React, { ChangeEvent } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { TextChange } from "typescript";
-
+import '../../app/layout/styles.css';
 
 
 export default function PostForm() {

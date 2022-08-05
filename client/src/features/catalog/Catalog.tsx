@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Post } from "../../app/models/post";
 import PostList from "./PostList";
-
+import '../../app/layout/styles.css';
 
 
 

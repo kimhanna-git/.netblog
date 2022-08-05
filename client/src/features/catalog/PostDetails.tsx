@@ -32,6 +32,7 @@ export default function PostDetails() {
           left: '30%',
           zIndex: 'tooltip',
           width: '62.3%'
+
         }}>
             <Grid container spacing={1}>
             
@@ -45,7 +46,11 @@ export default function PostDetails() {
                                     <TableCell><Typography sx={{fontSize: 25}} fontWeight='bold'>{post.title}</Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell><Typography sx={{fontSize: 20}}>{post.text}</Typography></TableCell>
+                                    <TableCell><Typography sx={{fontSize: 20}}>
+                                    <div style={{ whiteSpace: 'pre-wrap' }}>
+                                        {post.text}
+                                    </div>
+                                    </Typography></TableCell>
                                 </TableRow> 
                         
                             </TableBody>

@@ -23,7 +23,7 @@ namespace API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<List<Post>>> GetPosts()
-        {
+        {            
             return await _context.Posts.ToListAsync();
             
         }
@@ -54,7 +54,7 @@ namespace API.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult<Post>> UpdatePost(UpdatePostDto postDto)
+        public async Task<ActionResult<Post>> UpdatePost([FromForm] UpdatePostDto postDto)
         {
             var post = await _context.Posts.FindAsync(postDto.Id);
             if (post == null) return NotFound();
