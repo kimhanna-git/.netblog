@@ -43,7 +43,7 @@ namespace API.Controllers
         //[Authorize(Roles = "Admin")]
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<ActionResult<Post>> CreatePost(CreatePostDto postDto)
+        public async Task<ActionResult<Post>> CreatePost([FromForm] CreatePostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             _context.Posts.Add(post);
