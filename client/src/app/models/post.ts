@@ -3,6 +3,6 @@ export interface Post {
     title: string;
     authorId?: number;
     text: string;
-    timestamp?: Date;
+    timestamp: Date;
     
 }

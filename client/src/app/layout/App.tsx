@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
 import PostForm from "../../features/admin/PostForm";
+import UpdateForm from "../../features/admin/UpdateForm";
 import Catalog from "../../features/catalog/Catalog";
 import PostDetails from "../../features/catalog/PostDetails";
 import HomePage from "../../features/home/HomePage";
@@ -43,6 +44,7 @@ function App() {
         <Route exact path='/posts/:id' component={PostDetails}/> {/* link to individual posts */}
         <Route path='/about' component={AboutPage}/>
         <Route path='/writepost' component={PostForm}/> 
+        <Route exact path='/posts/:id/update' component={UpdateForm}/> 
       </Container>
       </CssBaseline>
       

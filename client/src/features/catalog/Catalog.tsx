@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Post } from "../../app/models/post";
 import PostList from "./PostList";
-import '../../app/layout/styles.css';
 
 
 
@@ -16,10 +15,12 @@ export default function Catalog() {
           .catch(error => console.log(error))
           .finally(() => setLoading(false));
   }, [])
+    
 
 
   
     return (
+        
         <>
           <Paper sx={{
           
@@ -32,6 +33,7 @@ export default function Catalog() {
           zIndex: 'tooltip',
           width: '62.3%'
         }}>
+      
       <PostList posts={posts} />
       </Paper>
         </>

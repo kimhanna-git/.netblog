@@ -8,16 +8,14 @@ export default function PostForm() {
   
   const { register, handleSubmit } = useForm();
 
+
   const onSubmit = async (data: any) => {
     var datestr = (new Date()).toUTCString();
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("text", data.text);
-    formData.append("category", data.category);
-    formData.append("timestamp", datestr);
-    formData.append("authorId", "1");
     const response = await axios("https://localhost:7230/api/posts", {
-        method: "POST",
+        method: "PUT",
         data: formData,
         headers: { "Content-Type": "multipart/form-data", "Accept": "multipart/form-data" },
         transformRequest: (formData) => {
@@ -26,8 +24,7 @@ export default function PostForm() {
         )
         .then((response) => {
           console.log(response);
-          window.location.href = 'http://localhost:7231/' // redirects to the homepage. Does work with http, but NOT with https (why?) 
-          // How to redirect to individual posts?
+          window.location.href = 'http://localhost:7231/'
         })
         .catch((error) => {
           if (error.response) {
@@ -39,8 +36,6 @@ export default function PostForm() {
             console.log(error);
           }
         });
-
-      
     
 };
   

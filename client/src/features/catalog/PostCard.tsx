@@ -1,7 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardMedia, ListItem, ListItemText, MenuItem, Stack, TableRow, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Post } from "../../app/models/post";
-import '../../app/layout/styles.css';
 interface Props {
     post: Post;
 }
