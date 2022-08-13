@@ -1,16 +1,33 @@
 import { TextField, Paper, Box, Button } from "@mui/material";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { Post } from "../../app/models/post";
+import { RichTextEditor } from "@mantine/rte";
 
 
-
-export default function PostForm() {
+export default function UpdateForm() {
   
   const { register, handleSubmit } = useForm();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios.get('https://localhost:7230/api/posts')
+        .then(response => setPosts(response.data))
+        .catch(error => console.log(error))
+        .finally(() => setLoading(false));
+  }, [])
+  
+  const intialValues = {
+    title: 'bill',
+    category: 'luo',
+    timestamp: 'bluebill1049@hotmail.com',
+    text: -1,
+  };
+
 
 
   const onSubmit = async (data: any) => {
-    var datestr = (new Date()).toUTCString();
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("text", data.text);
