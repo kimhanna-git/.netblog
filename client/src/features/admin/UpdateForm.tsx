@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Post } from "../../app/models/post";
-import { RichTextEditor } from "@mantine/rte";
+import TextEditor from "./TextEditor"
 
 
 export default function UpdateForm() {

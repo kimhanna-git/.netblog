@@ -1,14 +1,17 @@
 import { TextField, Paper, Box, Button } from "@mui/material";
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import { RichTextEditor } from "@mantine/rte";
+import { useForm, Controller } from "react-hook-form";
+import { Editor, EditorState } from "draft-js";
+import TextEditor from "./TextEditor"
+import "draft-js/dist/Draft.css";
+
 
 
 export default function PostForm() {
 
-  const { register, handleSubmit } = useForm();
-  
-
+  const { register, handleSubmit, control } = useForm({
+    
+  });
 
   const onSubmit = async (data: any) => {
     var datestr = (new Date()).toUTCString();
@@ -19,32 +22,30 @@ export default function PostForm() {
     formData.append("timestamp", datestr);
     formData.append("authorId", "1");
     const response = await axios("https://localhost:7230/api/posts", {
-        method: "POST",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data", "Accept": "multipart/form-data" },
-        transformRequest: (formData) => {
-        
-          return formData;}}
-        )
-        .then((response) => {
-          console.log(response);
-          window.location.href = 'http://localhost:7231/' // redirects to the homepage. Does work with http, but NOT with https (why?) 
-          // How to redirect to individual posts?
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log("server responded");
-          } else if (error.request) {
-            console.log("network error");
-          } else {
-            console.log(error);
-          }
-        });
-
+      method: "POST",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data", "Accept": "multipart/form-data" },
+      transformRequest: (formData) => {
       
-    
-};
+        return formData;}}
+      )
+      .then((response) => {
+        console.log(response);
+        window.location.href = 'http://localhost:7231/' // redirects to the homepage. Does work with http, but NOT with https (why?) 
+        // How to redirect to individual posts?
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log("server responded");
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
+      });
+  };
+
   
     return (
       <>
@@ -59,11 +60,12 @@ export default function PostForm() {
       zIndex: 'tooltip',
       width: '62.3%'
     }}>
+
                    
 <form onSubmit={handleSubmit(onSubmit)}>
-
   <Box>
-    <TextField
+ 
+  <TextField
       id="outlined-uncontrolled"
       label="Post Title"
       sx = {{width: '85%'}}
@@ -71,19 +73,16 @@ export default function PostForm() {
       {...register("title")}
     />
     <Button variant="contained" size="large"  sx={{top: "10%", left: "2%"}}>Delete</Button>
-    
   </Box>
   <p/><p/>
   <Box>
-    <TextField
-        id="outlined-multiline-static"
-        label="Post"
-        multiline
-        rows={21}
-        sx = {{width: '100%',
-        }}
-        type="text"
-        {...register("text")}
+  <Controller     
+          render={({ field }) => (
+            <TextEditor onChange={field.onChange} value={field.value} />
+          )}
+          control={control}
+          defaultValue=""
+          {...register("text")}
         />
   </Box>
   <p/>

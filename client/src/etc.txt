@@ -183,3 +183,38 @@ const handleChange = (event: { target: HTMLInputElement; }) => {
     )
   }
 
+
+
+
+
+
+
+
+<TextField
+        id="outlined-multiline-static"
+        label="Post"
+        multiline
+        rows={21}
+        sx = {{width: '100%',
+        }}
+        type="text"
+        {...register("text")}
+        />
+
+
+
+
+
+        <Controller
+        control={control}
+        defaultValue=''
+        render={({ field: { onChange, value, ref }}) => (
+          <Editor 
+            editorState={value}
+            onChange={onChange}
+            ref={ref} /> 
+          
+        )}
+        {...register("text")}
+        
+      />
