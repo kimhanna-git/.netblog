@@ -1,8 +1,10 @@
 import { Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../../app/models/post";
+import ReactHtmlParser, { processNodes, convertNodeToElement, } from 'react-html-parser';
+import htmlparser2 from 'react-html-parser'
 
 export default function PostDetails() {
     const {id} = useParams<{id: string}>();
@@ -19,6 +21,8 @@ export default function PostDetails() {
     if (loading) return <h3>...<p/>Loading....</h3>
 
     if (!post) return <h3>...<p/>Post not found</h3>
+
+    
 
     return (
         <>
@@ -46,11 +50,11 @@ export default function PostDetails() {
                                     <TableCell><Typography sx={{fontSize: 25}} fontWeight='bold'>{post.title}</Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell><Typography sx={{fontSize: 20}}>
-                                    <div style={{ whiteSpace: 'pre-wrap' }}>
-                                        {post.text}
+                                    
+                                    <div style={{ whiteSpace: 'pre-wrap' }} >
+                                        {ReactHtmlParser(post.text)} 
                                     </div>
-                                    </Typography></TableCell>
+                                    
                                 </TableRow> 
                         
                             </TableBody>

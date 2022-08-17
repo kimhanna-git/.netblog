@@ -5,7 +5,11 @@ interface Props {
     post: Post;
 }
 
+
 export default function PostCard({post}: Props) {
+  let d = document.createElement('div');
+  d.innerHTML = post.text
+  
     return (
         <Card sx={{ width: 490, height: 316}} >
       <CardContent>
@@ -17,7 +21,7 @@ export default function PostCard({post}: Props) {
         
         <Typography variant="h6" color="text.secondary">
         <div style={{ whiteSpace: 'pre-wrap' }}>
-          {post.text}{/* get the text body of the post */}
+          {d.innerText}{/* get the text body of the post */}
           </div>
         </Typography>
               

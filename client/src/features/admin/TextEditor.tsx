@@ -30,22 +30,15 @@ const TextEditor = ({ onChange, value } : any) => {
     };
   
     const toolbar = {
-      options: ["inline", "blockType", "list"],
-      inline: {
-        inDropdown: false,
-        className: undefined,
-        component: undefined,
-        dropdownClassName: undefined,
-        options: ["bold", "italic", "underline", "strikethrough"]
-      },
+      options: ["blockType", "list"],
       blockType: {
-        inDropdown: true,
-        options: ["Normal", "H1", "H2", "H3", "H4", "H5", "H6"]
+        inDropdown: false,
+        options: ["Normal", "H3", "H2", "H1",'Blockquote', 'Code' ]
       },
       list: {
-        inDrodown: false,
+        inDropdown: false,
         options: ["unordered", "ordered"]
-      }
+      },
     };
   
     return (
@@ -56,6 +49,7 @@ const TextEditor = ({ onChange, value } : any) => {
             editorState={editorState}
             onEditorStateChange={onEditorStateChange}
             toolbar={toolbar}
+            
           />
         </div>
       </React.Fragment>
