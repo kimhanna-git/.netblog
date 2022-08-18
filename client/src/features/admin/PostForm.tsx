@@ -68,11 +68,11 @@ export default function PostForm() {
   <TextField
       id="outlined-uncontrolled"
       label="Post Title"
-      sx = {{width: '85%'}}
+      sx = {{width: '100%'}}
       type="text"
       {...register("title")}
     />
-    <Button variant="contained" size="large"  sx={{top: "10%", left: "2%"}}>Delete</Button>
+
   </Box>
   <p/><p/>
   <Box>

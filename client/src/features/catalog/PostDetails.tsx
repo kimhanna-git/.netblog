@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../../app/models/post";
 import ReactHtmlParser from 'react-html-parser';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 export default function PostDetails() {
     const {id} = useParams<{id: string}>();
@@ -37,24 +39,24 @@ export default function PostDetails() {
           width: '62.3%'
 
         }}>
-            <Grid container spacing={1} width='95.5%'>
+            <Grid container spacing={1} width='100%'>
             
             <Grid>
                 <Grid item xs={15}>
                     <TableContainer>
                     <div className="table" style={{width:'100%' }}>
-                        <Table>
+                        <Table sx={{width: '100%'}}>
                             <TableBody>
                                 <TableRow>
                                     
-                                    <TableCell><Typography sx={{fontSize: 30}} fontWeight='bold'>{post.title}</Typography></TableCell>
+                                    <TableCell ><Typography sx={{fontSize: 30}} fontWeight='bold'>{post.title}</Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell><Typography sx={{fontSize: 20}}>
-                                    <React.Fragment>
-                                        
-                                    <div style={{ whiteSpace: 'pre-wrap' }} >
-                                        {ReactHtmlParser(post.text)} 
+                                    <TableCell sx={{width: '100%'}}><Typography sx={{fontSize: 20}}>                                 
+                                    <React.Fragment> 
+                                    <div style={{ whiteSpace: 'pre-wrap', width:'100%' }} >
+                                    
+                                        {ReactHtmlParser(post.text)}    
                                     </div>
                                     </React.Fragment>
                                     </Typography></TableCell>
