@@ -1,11 +1,9 @@
-import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { Box, createTheme, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, ThemeProvider, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../../app/models/post";
 import ReactHtmlParser from 'react-html-parser';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 export default function PostDetails() {
     const {id} = useParams<{id: string}>();
@@ -19,47 +17,58 @@ export default function PostDetails() {
             .finally(() => setLoading(false));
     }, [id])
 
-    if (loading) return <h3>...<p/>Loading....</h3>
+    if (loading) return <h3></h3>
 
-    if (!post) return <h3>...<p/>Post not found</h3>
+    if (!post) return <h3></h3>
 
+    const titletheme = createTheme({
+        typography: {
+          allVariants: {
+            fontFamily: 'Russo One',
+            textTransform: 'none',
+          },
+        },
+        
+      }  
+      );
     
+    const texttheme = createTheme({
+        typography: {
+          allVariants: {
+            fontFamily: 'Basic',
+            textTransform: 'none',
+          },
+        },
+        
+      }  
+      );
 
     return (
         <>
-          <Paper sx={{
-          
-          p: 2,
-          fontSize: '0.875rem',
-          fontWeight: '700',
-          position: 'absolute',
-          top: '20%',
-          left: '30%',
-          zIndex: 'tooltip',
-          width: '62.3%'
-
-        }}>
-            <Grid container spacing={1} width='100%'>
+         
+            <ThemeProvider theme={titletheme}>
+            <Grid container spacing={1} width='95.5%'>
             
             <Grid>
                 <Grid item xs={15}>
                     <TableContainer>
                     <div className="table" style={{width:'100%' }}>
-                        <Table sx={{width: '100%'}}>
+                        <Table>
                             <TableBody>
                                 <TableRow>
-                                    
-                                    <TableCell ><Typography sx={{fontSize: 30}} fontWeight='bold'>{post.title}</Typography></TableCell>
+                                <ThemeProvider theme={titletheme}>
+                                    <TableCell><Typography sx={{fontSize: 30}} fontWeight='bold'>{post.title}
+                                    </Typography></TableCell></ThemeProvider>
                                 </TableRow>
-                                <TableRow>
-                                    <TableCell sx={{width: '100%'}}><Typography sx={{fontSize: 20}}>                                 
+                                <TableRow><ThemeProvider theme={texttheme}>
+                                    <TableCell><Typography sx={{fontSize: 22}}>
                                     <React.Fragment> 
-                                    <div style={{ whiteSpace: 'pre-wrap', width:'100%' }} >
-                                    
-                                        {ReactHtmlParser(post.text)}    
+                                                        
+                                    <div style={{ whiteSpace: 'pre-wrap' }} >
+                                        {ReactHtmlParser(post.text)} 
                                     </div>
                                     </React.Fragment>
-                                    </Typography></TableCell>
+                                    </Typography></TableCell></ThemeProvider>
                                 </TableRow> 
                         
                             </TableBody>
@@ -69,9 +78,8 @@ export default function PostDetails() {
             </Grid>
 
         </Grid>
-      
-      </Paper>
-        
+        </ThemeProvider>
+     
 
 
         </>

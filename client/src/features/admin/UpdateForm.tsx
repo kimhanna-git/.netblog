@@ -8,7 +8,6 @@ import React from "react";
 
 
 export default function PostForm() {
-
   const { register, handleSubmit, control } = useForm({
     
   });
@@ -94,8 +93,7 @@ export default function PostForm() {
       type="text"
       {...register("category")}
     />
-    <Button variant="contained" size="large"  sx={{top: "10%", left: "67%"}}>Delete</Button>
-    <Button type="submit" variant="contained" size="large"  sx={{left: "70%"}}>Submit</Button>
+    <Button type="submit" variant="contained" size="large"  sx={{left: "80%"}}>Submit</Button>
   </Box>
 </form>          
   </Paper>

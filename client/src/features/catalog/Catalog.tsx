@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Box, createTheme, Paper, ThemeProvider } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Post } from "../../app/models/post";
@@ -15,27 +15,16 @@ export default function Catalog() {
           .catch(error => console.log(error))
           .finally(() => setLoading(false));
   }, [])
-    
 
-
-  
     return (
         
         <>
-          <Paper sx={{
+        
           
-          p: 2,
-          fontSize: '0.875rem',
-          fontWeight: '700',
-          position: 'absolute',
-          top: '20%',
-          left: '30%',
-          zIndex: 'tooltip',
-          width: '62.3%'
-        }}>
       
       <PostList posts={posts} />
-      </Paper>
+      
+      
         </>
             
             

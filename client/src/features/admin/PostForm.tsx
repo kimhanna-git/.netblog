@@ -8,7 +8,6 @@ import React from "react";
 
 
 export default function PostForm() {
-
   const { register, handleSubmit, control } = useForm({
     
   });

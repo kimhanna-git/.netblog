@@ -1,4 +1,5 @@
-import { Container, CssBaseline, Typography } from "@mui/material";
+import { Box, Container, CssBaseline, Typography } from "@mui/material";
+import React from "react";
 import { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
@@ -36,8 +37,19 @@ function App() {
   
   return (
     <>
+    
       <Header />
-      
+      <Box sx={{
+          
+          p: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
+          position: 'absolute',
+          top: '20%',
+          left: '27%',
+          zIndex: 'tooltip',
+          width: '65%',
+        }}>
       <CssBaseline>
       <Container>
         <Route exact path='/' component={Catalog}/>
@@ -47,6 +59,7 @@ function App() {
         <Route exact path='/posts/:id/update' component={UpdateForm}/> 
       </Container>
       </CssBaseline>
+      </Box>
       
     </>
   );

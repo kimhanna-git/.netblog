@@ -1,4 +1,4 @@
-import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography, ListItem } from "@mui/material";
+import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography, ListItem, Box } from "@mui/material";
 import { ThemeProvider, createTheme, styled, alpha } from '@mui/material/styles';
 import { Link, NavLink } from "react-router-dom";
 import './styles.css'
@@ -6,7 +6,7 @@ import './styles.css'
   const titletheme = createTheme({
     typography: {
       allVariants: {
-        fontFamily: 'Noto Sans',
+        fontFamily: 'Russo One',
         textTransform: 'none',
         fontSize: 80,
       },
@@ -52,7 +52,7 @@ import './styles.css'
   const menutheme = createTheme({
     typography: {
       allVariants: {
-        fontFamily: 'Noto Sans',
+        fontFamily: 'Russo One',
         textTransform: 'none',
         fontSize: 25,
         
@@ -79,9 +79,9 @@ export default function Header() {
         
         <ThemeProvider theme={menutheme}>
           
-        <Paper sx={{ width: 370,
+        <Box sx={{ width: 330,
         position: 'absolute',
-        top: '20%',
+        top: '23%',
         left: '6%',}}>
       <MenuList dense>
         {Links.map(({title, path}) => (
@@ -97,10 +97,10 @@ export default function Header() {
         </MenuItem>
         ))}
         </MenuList>
-        </Paper>
-        <Paper sx={{ width: 370,
+        </Box>
+        <Box sx={{ width: 330,
         position: 'absolute',
-        top: '40%',
+        top: '43%',
         left: '6%', }}>
 
       <MenuList dense>
@@ -113,7 +113,7 @@ export default function Header() {
           </Search>
           </MenuItem>
         </MenuList>
-    </Paper>
+    </Box>
         
         </ThemeProvider>
         
