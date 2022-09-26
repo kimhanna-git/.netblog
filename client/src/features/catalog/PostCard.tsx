@@ -1,6 +1,8 @@
 import { ThemeProvider, Box, Button, Card, CardActions, CardContent, CardMedia, createTheme, ListItem, ListItemText, MenuItem, Stack, TableRow, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Post } from "../../app/models/post";
+import React from 'react';
+
 interface Props {
     post: Post;
 }

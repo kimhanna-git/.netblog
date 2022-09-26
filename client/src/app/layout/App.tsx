@@ -21,33 +21,19 @@ function App() {
       .then(response => response.json())
       .then(data => setPosts(data))
   }, [])
-
-  function addPost(){
-    setPosts(prevState => [...prevState, 
-      {
-        id: prevState.length + 101,
-        title : 'post' + (prevState.length + 1),
-        authorId: 3,
-        text: 'here it is text', 
-        timestamp: dateTime,
-        upvote: (prevState.length*10 + 10),
-        report: (prevState.length*10 + 1), 
-        infovote: (prevState.length*10)}])
-  }
   
   return (
     <>
     
       <Header />
       <Box sx={{
-          
           p: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-          position: 'absolute',
-          top: '20%',
-          left: '27%',
-          zIndex: 'tooltip',
+          position: 'relative',
+          top: '30%',
+          left: '25%',
+          alignContent: 'center',
           width: '65%',
         }}>
       <CssBaseline>

@@ -1,5 +1,6 @@
-import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography, ListItem, Box } from "@mui/material";
+import { TextField, Button, InputBase, ListItemText, MenuItem, MenuList, Paper, Typography, ListItem, Box, AppBar, Fade, List, Menu, Toolbar } from "@mui/material";
 import { ThemeProvider, createTheme, styled, alpha } from '@mui/material/styles';
+import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import './styles.css'
 
@@ -8,7 +9,7 @@ import './styles.css'
       allVariants: {
         fontFamily: 'Russo One',
         textTransform: 'none',
-        fontSize: 80,
+        fontSize: 40,
       },
     },
     
@@ -72,10 +73,35 @@ export default function Header() {
         <>
         
         <ThemeProvider theme={titletheme}>
-        <Typography variant='h2' align= 'center'>
-        <Button component={Link} to="/" color="inherit">HANNA'S BLOG</Button>
-        </Typography>
+        <AppBar position="fixed" color="secondary" sx={{display: 'flex', height: '65px'}}>
+        <Toolbar disableGutters sx={{height: '65px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+ 
+        <ListItem>
+        <Button disableRipple disableElevation color="inherit" style={{backgroundColor: 'transparent'}}>
+          <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+          HANNA'S BLOG      
+          </Link>
+        </Button>
+        </ListItem>
+
+        </Toolbar>
+        </AppBar>
+        <Toolbar />
         </ThemeProvider>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         <ThemeProvider theme={menutheme}>
           

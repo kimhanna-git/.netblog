@@ -1,16 +1,16 @@
-import { TextField, Paper, Box, Button } from "@mui/material";
+import { TextField, Box, Button } from "@mui/material";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import TextEditor from "./TextEditor"
 import "draft-js/dist/Draft.css";
-import React from "react";
 
 
 
-export default function PostForm() {
+export default function UpdateForm() {
   const { register, handleSubmit, control } = useForm({
     
   });
+  
 
   const onSubmit = async (data: any) => {
     var datestr = (new Date()).toUTCString();
@@ -21,7 +21,7 @@ export default function PostForm() {
     formData.append("timestamp", datestr);
     formData.append("authorId", "1");
     const response = await axios("https://localhost:7230/api/posts", {
-      method: "POST",
+      method: "PUT",
       data: formData,
       headers: { "Content-Type": "multipart/form-data", "Accept": "multipart/form-data" },
       transformRequest: (formData) => {
@@ -45,22 +45,9 @@ export default function PostForm() {
       });
   };
 
-  
-    return (
-      <>
-      <Paper sx={{
-      
-      p: 2,
-      fontSize: '0.875rem',
-      fontWeight: '700',
-      position: 'absolute',
-      top: '20%',
-      left: '30%',
-      zIndex: 'tooltip',
-      width: '62.3%'
-    }}>
 
-                   
+    return (
+      <>           
 <form onSubmit={handleSubmit(onSubmit)}>
   <Box>
  
@@ -68,6 +55,7 @@ export default function PostForm() {
       id="outlined-uncontrolled"
       label="Post Title"
       sx = {{width: '100%'}}
+      defaultValue=""
       type="text"
       {...register("title")}
     />
@@ -90,13 +78,13 @@ export default function PostForm() {
       id="outlined-uncontrolled"
       label="Category"
       sx = {{width: '20%'}}
+      defaultValue=""
       type="text"
       {...register("category")}
     />
     <Button type="submit" variant="contained" size="large"  sx={{left: "80%"}}>Submit</Button>
   </Box>
 </form>          
-  </Paper>
     </>
     )
   }

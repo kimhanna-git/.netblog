@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PostsController : ControllerBase
+    public class PostsController : BaseApiController
     {
         private readonly BlogContext _context;
         private readonly IMapper _mapper;
@@ -53,7 +53,7 @@ namespace API.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult<Post>> UpdatePost([FromForm] UpdatePostDto postDto)
         {
             var post = await _context.Posts.FindAsync(postDto.Id);

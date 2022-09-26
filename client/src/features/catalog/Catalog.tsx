@@ -1,5 +1,6 @@
 import { Box, createTheme, Paper, ThemeProvider } from "@mui/material";
 import axios from "axios";
+import React from 'react';
 import { useState, useEffect } from "react";
 import { Post } from "../../app/models/post";
 import PostList from "./PostList";

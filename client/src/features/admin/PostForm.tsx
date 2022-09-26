@@ -1,9 +1,9 @@
-import { TextField, Paper, Box, Button } from "@mui/material";
+import { TextField, Box, Button } from "@mui/material";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import TextEditor from "./TextEditor"
 import "draft-js/dist/Draft.css";
-import React from "react";
+import React from 'react';
 
 
 
@@ -47,20 +47,7 @@ export default function PostForm() {
 
   
     return (
-      <>
-      <Paper sx={{
-      
-      p: 2,
-      fontSize: '0.875rem',
-      fontWeight: '700',
-      position: 'absolute',
-      top: '20%',
-      left: '30%',
-      zIndex: 'tooltip',
-      width: '62.3%'
-    }}>
-
-                   
+      <>           
 <form onSubmit={handleSubmit(onSubmit)}>
   <Box>
  
@@ -96,7 +83,6 @@ export default function PostForm() {
     <Button type="submit" variant="contained" size="large"  sx={{left: "80%"}}>Submit</Button>
   </Box>
 </form>          
-  </Paper>
     </>
     )
   }
