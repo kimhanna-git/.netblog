@@ -2,39 +2,25 @@ import { Box, createTheme, Grid, Paper, Table, TableBody, TableCell, TableContai
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Post } from "../../app/models/post";
+import { Comment } from "../../app/models/comment";
 import ReactHtmlParser from 'react-html-parser';
-import CommentList from "./CommentList";
-import agent from "../../app/api/agent";
 
 
-export default function PostDetails() {
+
+export default function CommentDetails() {
     const {id} = useParams<{id: string}>();
-    const [post, setPost] = useState<Post | null>(null);
+    const [comment, setComment] = useState<Comment | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        agent.Catalog.details(parseInt(id))
-        .then(response => setPost(response))
-        .catch(error =>console.log(error))
-        .finally(() => setLoading(false));
+        axios.get(`https://localhost:7230/api/comments/${id}`)
+            .then(response => setComment(response.data))
+            .catch(error => console.log(error))
+            .finally(() => setLoading(false));
     }, [id])
 
-    if (loading) return <h3></h3>
+    if (!comment) return <h3> "This coment was deleted"</h3>
 
-    if (!post) return <h3> This post doesn't exist </h3>
-
-    const titletheme = createTheme({
-        typography: {
-          allVariants: {
-            fontFamily: 'Russo One',
-            textTransform: 'none',
-          },
-        },
-        
-      }  
-      );
-    
     const texttheme = createTheme({
         typography: {
           allVariants: {
@@ -49,7 +35,7 @@ export default function PostDetails() {
     return (
         <>
          
-            <ThemeProvider theme={titletheme}>
+           
             <Grid container spacing={1} width='95.5%'>
             
             <Grid>
@@ -58,17 +44,12 @@ export default function PostDetails() {
                     <div className="table" style={{width:'100%' }}>
                         <Table>
                             <TableBody>
-                                <TableRow>
-                                <ThemeProvider theme={titletheme}>
-                                    <TableCell><Typography sx={{fontSize: 30}} fontWeight='bold'>{post.title}
-                                    </Typography></TableCell></ThemeProvider>
-                                </TableRow>
                                 <TableRow><ThemeProvider theme={texttheme}>
                                     <TableCell><Typography sx={{fontSize: 22}}>
                                     <React.Fragment> 
                                                         
                                     <div style={{ whiteSpace: 'pre-wrap' }} >
-                                        {ReactHtmlParser(post.text)} 
+                                        {ReactHtmlParser(comment.text)} 
                                     </div>
                                     </React.Fragment>
                                     </Typography></TableCell></ThemeProvider>
@@ -78,13 +59,11 @@ export default function PostDetails() {
                         </Table></div>
                     </TableContainer>
                 </Grid>
-                <Grid item xs={15}>
-                    
-                </Grid>
+                
             </Grid>
             
         </Grid>
-        </ThemeProvider>
+        
      
 
 

@@ -3,8 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
-import PostForm from "../../features/admin/PostForm";
-import UpdateForm from "../../features/admin/UpdateForm";
+import PostForm from "../../features/forms/PostForm";
+import UpdateForm from "../../features/forms/UpdateForm";
 import Catalog from "../../features/catalog/Catalog";
 import PostDetails from "../../features/catalog/PostDetails";
 import HomePage from "../../features/home/HomePage";
@@ -15,12 +15,6 @@ import Header from "./Header";
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
   let dateTime = new Date();
-
-  useEffect(() => {
-    fetch('https://localhost:7230/api/posts')
-      .then(response => response.json())
-      .then(data => setPosts(data))
-  }, [])
   
   return (
     <>
